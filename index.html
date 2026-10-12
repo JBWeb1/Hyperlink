@@ -4,7 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ethan Lee September | Links</title>
-  
+  <meta name="description" content="Ethan Lee September — Entrepreneur | Social Media Marketing. Find all my links in one place." />
+  <meta name="theme-color" content="#1e90ff" />
+  <meta property="og:title" content="Ethan Lee September | Links" />
+  <meta property="og:description" content="Entrepreneur | Social Media Marketing" />
+  <meta property="og:image" content="IMG-20250503-WA0033.jpg" />
+  <link rel="icon" href="IMG-20250503-WA0033.jpg" />
+
+  <!-- Poppins Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -22,8 +33,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 24px 0;
+    overflow-x: hidden;
     position: relative;
     background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #00c6ff, #7c5cff);
     background-size: 1000% 1000%;
@@ -38,7 +51,9 @@
 
   /* Floating Particles */
   .background {
-    position: absolute;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -87,6 +102,8 @@
     border-radius: 50%;
     border: 3px solid #00bcd4;
     margin-bottom: 15px;
+    object-fit: cover;
+    object-position: center 80%;
     transition: transform 0.3s ease;
   }
 
@@ -130,7 +147,8 @@
     font-size: 18px;
   }
 
-  .link:hover {
+  .link:hover,
+  .link:focus-visible {
     transform: scale(1.07);
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
   }
@@ -141,7 +159,13 @@
   .whatsapp  { background: #25d366; }
   .shop      { background: linear-gradient(45deg, #ffafbd, #ffc3a0); color: #111; }
 
-  .shop:hover {
+  .link:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+  }
+
+  .shop:hover,
+  .shop:focus-visible {
     box-shadow: 0 4px 25px rgba(255, 200, 200, 0.5);
     transform: scale(1.08);
   }
@@ -152,10 +176,17 @@
     font-size: 13px;
     color: #bbb;
   }
+  /* Respect users who prefer less motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
   </style>
 </head>
 <body>
-  <div class="background">
+  <div class="background" aria-hidden="true">
     <div class="particle"></div>
     <div class="particle"></div>
     <div class="particle"></div>
@@ -165,32 +196,36 @@
 
   <div class="container">
     <div class="profile">
-      <img src="IMG-20250503-WA0033.jpg" alt="Profile Picture" class="avatar">
+      <img src="IMG-20250503-WA0033.jpg" alt="Ethan Lee September" class="avatar" width="100" height="100">
       <h1>Ethan Lee September</h1>
       <p>Entrepreneur | Social Media Marketing</p>
     </div>
 
     <div class="links">
-      <a href="https://www.instagram.com/its_ethan_lee01/" target="_blank" class="link instagram">
+      <a href="https://www.instagram.com/its_ethan_lee01/" target="_blank" rel="noopener noreferrer" class="link instagram">
         <i class="fab fa-instagram"></i> Instagram
       </a>
 
-      <a href="https://www.facebook.com/ethanlee.september.7" target="_blank" class="link facebook">
+      <a href="https://www.facebook.com/ethanlee.september.7" target="_blank" rel="noopener noreferrer" class="link facebook">
         <i class="fab fa-facebook-f"></i> Facebook
       </a>
 
-      <a href="https://wa.me/27812345678" target="_blank" class="link whatsapp">
+      <a href="https://wa.me/27812345678" target="_blank" rel="noopener noreferrer" class="link whatsapp">
         <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
 
-      <a href="https://www.instagram.com/fragrance.vitality/" target="_blank" class="link shop">
+      <a href="https://www.instagram.com/fragrance.vitality/" target="_blank" rel="noopener noreferrer" class="link shop">
         <i class="fas fa-store"></i> Insta Shop
       </a>
     </div>
 
     <footer>
-      <p>By 2025 Joshua Bowers</p>
+      <p>&copy; <span id="year">2025</span> Ethan Lee September &middot; Site by Joshua Bowers</p>
     </footer>
   </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
