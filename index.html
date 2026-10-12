@@ -4,7 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ethan Lee September | Links</title>
-  
+  <meta name="description" content="Ethan Lee September — Entrepreneur | Social Media Marketing. Find all my links in one place." />
+  <meta name="theme-color" content="#0b0b12" />
+  <meta property="og:title" content="Ethan Lee September | Links" />
+  <meta property="og:description" content="Entrepreneur | Social Media Marketing" />
+  <meta property="og:image" content="IMG-20250503-WA0033.jpg" />
+  <link rel="icon" href="IMG-20250503-WA0033.jpg" />
+
+  <!-- Poppins Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -16,181 +27,363 @@
     box-sizing: border-box;
   }
 
+  :root {
+    --bg: #0b0b12;
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.65);
+    --glass: rgba(255, 255, 255, 0.07);
+    --glass-hover: rgba(255, 255, 255, 0.13);
+    --border: rgba(255, 255, 255, 0.12);
+    --accent-1: #ff416c;
+    --accent-2: #7c5cff;
+    --accent-3: #00c6ff;
+  }
+
   body {
     font-family: 'Poppins', sans-serif;
-    color: white;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    padding: 56px 16px 32px;
+    overflow-x: hidden;
     position: relative;
-    background: linear-gradient(270deg, #ff416c, #ff4b2b, #1e90ff, #00c6ff, #7c5cff);
-    background-size: 1000% 1000%;
-    animation: gradientMove 15s ease infinite;
   }
 
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  /* Blurred photo backdrop */
+  .backdrop {
+    position: fixed;
+    inset: -40px;
+    background: url("IMG-20250503-WA0033.jpg") center 70% / cover no-repeat;
+    filter: blur(40px) saturate(1.4);
+    opacity: 0.45;
+    z-index: -2;
   }
 
-  /* Floating Particles */
-  .background {
+  .backdrop::after {
+    content: "";
     position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 11, 18, 0.35) 0%, var(--bg) 85%);
   }
 
-  .particle {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.6);
+  /* Soft glowing color blobs */
+  .glow {
+    position: fixed;
+    width: 340px;
+    height: 340px;
     border-radius: 50%;
-    box-shadow: 0 0 15px rgba(255,255,255,0.8);
-    animation: float 10s linear infinite;
+    filter: blur(90px);
+    opacity: 0.35;
+    z-index: -1;
+    pointer-events: none;
+    animation: drift 18s ease-in-out infinite alternate;
   }
 
-  .particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; width: 8px; height: 8px; }
-  .particle:nth-child(2) { top: 50%; left: 40%; animation-delay: 2s; width: 12px; height: 12px; }
-  .particle:nth-child(3) { top: 70%; left: 80%; animation-delay: 4s; width: 9px; height: 9px; }
-  .particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1s; width: 14px; height: 14px; }
-  .particle:nth-child(5) { top: 80%; left: 25%; animation-delay: 3s; width: 11px; height: 11px; }
+  .glow.one { background: var(--accent-1); top: -80px; left: -100px; }
+  .glow.two { background: var(--accent-3); bottom: -120px; right: -100px; animation-delay: -9s; }
 
-  @keyframes float {
-    0% { transform: translateY(0) scale(1); opacity: 1; }
-    50% { transform: translateY(-60px) scale(1.2); opacity: 0.7; }
-    100% { transform: translateY(0) scale(1); opacity: 1; }
+  @keyframes drift {
+    from { transform: translate(0, 0); }
+    to   { transform: translate(60px, 40px); }
   }
 
-  /* Container */
+  /* Page column */
   .container {
+    width: 100%;
+    max-width: 440px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.45);
-    padding: 40px 30px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px);
-    z-index: 5;
   }
 
   /* Profile Section */
-  .avatar {
-    width: 100px;
-    height: 100px;
+  .avatar-ring {
+    width: 128px;
+    height: 128px;
+    margin: 0 auto 18px;
+    padding: 4px;
     border-radius: 50%;
-    border: 3px solid #00bcd4;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease;
+    background: conic-gradient(from 0deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-1));
+    animation: spin 8s linear infinite;
+    box-shadow: 0 10px 40px rgba(124, 92, 255, 0.35);
   }
 
-  .avatar:hover {
-    transform: scale(1.08);
+  .avatar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid var(--bg);
+    object-fit: cover;
+    object-position: center 80%;
+    animation: spin 8s linear infinite reverse;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
   }
 
   .profile h1 {
-    font-size: 22px;
-    margin-bottom: 5px;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .profile p {
-    color: #ccc;
-    font-size: 14px;
+  .profile h1 i {
+    font-size: 18px;
+    color: var(--accent-3);
+  }
+
+  .tagline {
+    margin-top: 6px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+  }
+
+  /* Social icon row */
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .socials a {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--text);
+    font-size: 18px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+
+  .socials a:hover,
+  .socials a:focus-visible {
+    transform: translateY(-3px);
+    background: var(--glass-hover);
   }
 
   /* Links Section */
   .links {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 25px;
+    gap: 14px;
+    margin-top: 30px;
   }
 
   .link {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
+    gap: 14px;
+    padding: 10px 18px 10px 10px;
+    border-radius: 16px;
     text-decoration: none;
-    padding: 12px;
-    border-radius: 10px;
-    color: white;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    font-size: 16px;
+    color: var(--text);
+    background: var(--glass);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    text-align: left;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .link i {
-    font-size: 18px;
+  .link:hover,
+  .link:focus-visible {
+    transform: translateY(-3px);
+    background: var(--glass-hover);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   }
 
-  .link:hover {
-    transform: scale(1.07);
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25);
+  .link .icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 20px;
+    color: #fff;
   }
 
-  /* Specific Button Colors */
-  .instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
-  .facebook  { background: #1877f2; }
-  .whatsapp  { background: #25d366; }
-  .shop      { background: linear-gradient(45deg, #ffafbd, #ffc3a0); color: #111; }
+  .link .text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-  .shop:hover {
-    box-shadow: 0 4px 25px rgba(255, 200, 200, 0.5);
-    transform: scale(1.08);
+  .link .title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .link .sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .link .arrow {
+    font-size: 14px;
+    color: var(--muted);
+    transition: transform 0.25s ease;
+  }
+
+  .link:hover .arrow,
+  .link:focus-visible .arrow {
+    transform: translateX(4px);
+    color: var(--text);
+  }
+
+  a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  /* Brand colors for icon tiles */
+  .instagram .icon { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
+  .facebook  .icon { background: #1877f2; }
+  .whatsapp  .icon { background: #25d366; }
+
+  /* Featured shop card */
+  .link.shop {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 175, 189, 0.22), rgba(255, 195, 160, 0.22));
+    border-color: rgba(255, 195, 160, 0.45);
+  }
+
+  .shop .icon { background: linear-gradient(45deg, #ffafbd, #ffc3a0); color: #111; }
+
+  .shop .badge {
+    position: absolute;
+    top: -9px;
+    right: 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #111;
+    background: linear-gradient(45deg, #ffafbd, #ffc3a0);
+    padding: 3px 10px;
+    border-radius: 999px;
   }
 
   /* Footer */
   footer {
-    margin-top: 25px;
-    font-size: 13px;
-    color: #bbb;
+    margin-top: 36px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* Entrance animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.6s ease forwards;
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Respect users who prefer less motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+    .reveal { opacity: 1; transform: none; }
   }
   </style>
 </head>
 <body>
-  <div class="background">
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-    <div class="particle"></div>
-  </div>
+  <div class="backdrop" aria-hidden="true"></div>
+  <div class="glow one" aria-hidden="true"></div>
+  <div class="glow two" aria-hidden="true"></div>
 
-  <div class="container">
-    <div class="profile">
-      <img src="IMG-20250503-WA0033.jpg" alt="Profile Picture" class="avatar">
-      <h1>Ethan Lee September</h1>
-      <p>Entrepreneur | Social Media Marketing</p>
-    </div>
+  <main class="container">
+    <section class="profile reveal">
+      <div class="avatar-ring">
+        <img src="IMG-20250503-WA0033.jpg" alt="Ethan Lee September" class="avatar" width="120" height="120">
+      </div>
+      <h1>Ethan Lee September <i class="fas fa-circle-check" aria-hidden="true"></i></h1>
+      <div class="tagline">
+        <span class="tag">Entrepreneur</span>
+        <span class="tag">Social Media Marketing</span>
+      </div>
+
+      <nav class="socials" aria-label="Social profiles">
+        <a href="https://www.instagram.com/its_ethan_lee01/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/ethanlee.september.7" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/27812345678" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </nav>
+    </section>
 
     <div class="links">
-      <a href="https://www.instagram.com/its_ethan_lee01/" target="_blank" class="link instagram">
-        <i class="fab fa-instagram"></i> Instagram
+      <a href="https://www.instagram.com/fragrance.vitality/" target="_blank" rel="noopener noreferrer" class="link shop reveal" style="animation-delay: 0.1s">
+        <span class="badge">Shop</span>
+        <span class="icon"><i class="fas fa-store"></i></span>
+        <span class="text">
+          <span class="title">Fragrance Vitality</span>
+          <span class="sub">Browse the Insta shop</span>
+        </span>
+        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
       </a>
 
-      <a href="https://www.facebook.com/ethanlee.september.7" target="_blank" class="link facebook">
-        <i class="fab fa-facebook-f"></i> Facebook
+      <a href="https://www.instagram.com/its_ethan_lee01/" target="_blank" rel="noopener noreferrer" class="link instagram reveal" style="animation-delay: 0.2s">
+        <span class="icon"><i class="fab fa-instagram"></i></span>
+        <span class="text">
+          <span class="title">Instagram</span>
+          <span class="sub">@its_ethan_lee01</span>
+        </span>
+        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
       </a>
 
-      <a href="https://wa.me/27812345678" target="_blank" class="link whatsapp">
-        <i class="fab fa-whatsapp"></i> WhatsApp
+      <a href="https://www.facebook.com/ethanlee.september.7" target="_blank" rel="noopener noreferrer" class="link facebook reveal" style="animation-delay: 0.3s">
+        <span class="icon"><i class="fab fa-facebook-f"></i></span>
+        <span class="text">
+          <span class="title">Facebook</span>
+          <span class="sub">Ethan Lee September</span>
+        </span>
+        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
       </a>
 
-      <a href="https://www.instagram.com/fragrance.vitality/" target="_blank" class="link shop">
-        <i class="fas fa-store"></i> Insta Shop
+      <a href="https://wa.me/27812345678" target="_blank" rel="noopener noreferrer" class="link whatsapp reveal" style="animation-delay: 0.4s">
+        <span class="icon"><i class="fab fa-whatsapp"></i></span>
+        <span class="text">
+          <span class="title">WhatsApp</span>
+          <span class="sub">Message me directly</span>
+        </span>
+        <i class="fas fa-arrow-right arrow" aria-hidden="true"></i>
       </a>
     </div>
 
-    <footer>
-      <p>By 2025 Joshua Bowers</p>
+    <footer class="reveal" style="animation-delay: 0.5s">
+      <p>&copy; <span id="year">2025</span> Ethan Lee September &middot; Site by Joshua Bowers</p>
     </footer>
-  </div>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
